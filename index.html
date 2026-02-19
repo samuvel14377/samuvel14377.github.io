@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam Tech</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#000000,#0f2027);
+color:white;
+scroll-behavior:smooth;
+}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+position:fixed;
+width:100%;
+top:0;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.logo{
+color:#00ff99;
+font-size:20px;
+font-weight:bold;
+}
+
+nav ul{
+list-style:none;
+display:flex;
+gap:15px;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-size:14px;
+}
+
+nav ul li a:hover{
+color:#00ff99;
+}
+
+/* HERO */
+.hero{
+padding:120px 20px 80px;
+text-align:center;
+}
+
+.hero h1{
+font-size:38px;
+color:#00ff99;
+margin-bottom:10px;
+}
+
+.tagline{
+opacity:0.8;
+margin-bottom:30px;
+}
+
+.hero-images{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+
+.hero-images img{
+width:110px;
+height:110px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 0 15px #00ff99;
+transition:0.4s;
+}
+
+.hero-images img:hover{
+transform:scale(1.1);
+box-shadow:0 0 25px cyan;
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+background:linear-gradient(45deg,#00ff99,#0077ff);
+border-radius:30px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* SECTION */
+section{
+padding:70px 20px;
+text-align:center;
+}
+
+.section-title{
+font-size:28px;
+margin-bottom:30px;
+color:#00ff99;
+}
+
+/* SERVICES */
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:20px;
+}
+
+.card{
+background:#111;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 15px #00ff99;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 25px cyan;
+}
+
+/* FOOTER */
+footer{
+padding:20px;
+text-align:center;
+background:#000;
+font-size:12px;
+opacity:0.7;
+}
+
+/* DARK TOGGLE */
+.toggle{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0077ff;
+padding:10px 15px;
+border-radius:20px;
+cursor:pointer;
+font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">Sam Tech 🚀</div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<h1>Sam Tech</h1>
+<p class="tagline">AI Powered Digital Studio</p>
+
+<div class="hero-images">
+<img src="https://images.unsplash.com/photo-1677442136019-21780ecad995" alt="">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="">
+<img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f" alt="">
+</div>
+
+<a href="https://t.me/samxytofc" class="btn">📩 Work With Me</a>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2 class="section-title">About Me</h2>
+<p>I help brands grow using AI videos, thumbnails, ads and automation systems.  
+Modern UI + Creative AI Solutions.</p>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+<h2 class="section-title">Services</h2>
+
+<div class="services">
+<div class="card">📱 Social Media Marketing</div>
+<div class="card">🎬 AI Video Creation</div>
+<div class="card">🤖 AI Influencers</div>
+<div class="card">📢 AI Ads Creation</div>
+<div class="card">🖼️ YouTube Thumbnails</div>
+<div class="card">🎨 Logo Design</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2 class="section-title">Support / Paid Promotion</h2>
+<p>For collaborations & promotions contact via Telegram.</p>
+<br>
+<a href="https://t.me/samxytofc" class="btn">💰 Contact Now</a>
+</section>
+
+<footer>
+© 2026 Sam Tech | AI Studio
+</footer>
+
+<div class="toggle" onclick="toggleMode()">🌙 Hacker Mode</div>
+
+<script>
+function toggleMode(){
+document.body.style.background =
+document.body.style.background === "black"
+? "linear-gradient(135deg,#000000,#0f2027)"
+: "black";
+}
+</script>
+
+</body>
+  </html>
