@@ -1,25 +1,482 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Security Scan</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSTEM BREACH DETECTED</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #0f0;
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #0f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #0f0;
+            animation: glitch 2s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 10px #0f0; }
+            50% { text-shadow: -2px 0 #f00, 2px 0 #00f; }
+        }
+        
+        .warning-box {
+            border: 2px solid #0f0;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0, 20, 0, 0.8);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        
+        .terminal {
+            background: rgba(0, 10, 0, 0.9);
+            border: 1px solid #0f0;
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            margin: 10px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .terminal-line {
+            opacity: 0;
+            animation: typeIn 0.1s forwards;
+            margin: 2px 0;
+        }
+        
+        @keyframes typeIn {
+            to { opacity: 1; }
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            border: 2px solid #0f0;
+            background: #001100;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0f0, #00ff00, #0f0);
+            width: 0%;
+            transition: width 0.3s;
+            box-shadow: 0 0 20px #0f0;
+            position: relative;
+        }
+        
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 1s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .btn {
+            background: transparent;
+            color: #0f0;
+            border: 2px solid #0f0;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-family: 'Share Tech Mono', monospace;
+            cursor: pointer;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background: #0f0;
+            color: #000;
+            box-shadow: 0 0 30px #0f0;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,255,0,0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0, 255, 0, 0.5);
+            animation: scan 3s linear infinite;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100vh; }
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .danger {
+            color: #f00;
+            text-shadow: 0 0 10px #f00;
+        }
+        
+        .success {
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+        }
+        
+        .warning {
+            color: #ff0;
+            text-shadow: 0 0 10px #ff0;
+        }
+        
+        .ip-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        .countdown {
+            font-size: 48px;
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 0 0 20px #f00;
+            display: none;
+        }
+        
+        .access-granted {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .skull {
+            font-size: 100px;
+            text-align: center;
+            margin: 20px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
 </head>
-
 <body>
+    <canvas id="matrix-canvas"></canvas>
+    <div class="scan-line"></div>
+    
+    <div class="ip-display">
+        IP: <span id="ip-address">192.168.X.X</span> | STATUS: <span class="danger">VULNERABLE</span>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>⚠️ UNAUTHORIZED ACCESS DETECTED ⚠️</h1>
+            <p>SYSTEM SECURITY BREACH IN PROGRESS</p>
+        </div>
+        
+        <div class="warning-box">
+            <h3 class="danger">>> WARNING: MALICIOUS SOFTWARE DETECTED</h3>
+            <p>Target System: <span id="target-system">Windows 10/11</span></p>
+            <p>Location: <span id="location">Detecting...</span></p>
+            <p>Threat Level: <span class="danger">CRITICAL</span></p>
+        </div>
+        
+        <div class="terminal" id="terminal">
+            <div class="terminal-line">Initializing hack sequence...</div>
+        </div>
+        
+        <div class="progress-container" id="progress-container">
+            <h3>INSTALLING VIRUS... <span id="percentage">0%</span></h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p id="current-file">Initializing...</p>
+        </div>
+        
+        <div class="countdown" id="countdown">
+            SYSTEM FAILURE IN: <span id="timer">10</span>s
+        </div>
+        
+        <div class="access-granted" id="access-granted">
+            <div class="skull">☠️</div>
+            <h2 class="danger">ACCESS GRANTED</h2>
+            <p>SYSTEM COMPROMISED SUCCESSFULLY</p>
+            <p class="warning">All files encrypted. Pay 5 BTC to unlock.</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: auto;" id="button-container">
+            <button class="btn" onclick="startHack()">INITIATE HACK</button>
+            <button class="btn" onclick="startVirusInstall()">INSTALL VIRUS</button>
+        </div>
+    </div>
 
-<div class="terminal">
-
-<h2>⚠ SYSTEM VIRUS SCAN</h2>
-
-<div id="output"></div>
-
-<p class="footer">
-Powered by Sam Tech Agent © Sam 2026
-</p>
-
-</div>
-
-<script src="script.js"></script>
-
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 35);
+        
+        // Fake IP and Location
+        document.getElementById('ip-address').textContent = 
+            `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`;
+        
+        const locations = ['Chennai, IN', 'Mumbai, IN', 'Delhi, IN', 'Bangalore, IN', 'Hyderabad, IN'];
+        document.getElementById('location').textContent = 
+            locations[Math.floor(Math.random() * locations.length)];
+        
+        // Terminal messages
+        const hackMessages = [
+            ">> Bypassing firewall...",
+            ">> Exploiting vulnerability CVE-2024-XXXX...",
+            ">> Injecting payload...",
+            ">> Escalating privileges...",
+            ">> Disabling antivirus...",
+            ">> Accessing root directory...",
+            ">> Downloading sensitive data...",
+            ">> Encrypting files... [AES-256]",
+            ">> Establishing backdoor...",
+            ">> Clearing logs...",
+            ">> Connection established to C2 server...",
+            ">> HACK SUCCESSFUL"
+        ];
+        
+        const virusFiles = [
+            "trojan.exe", "keylogger.sys", "ransomware.dll", 
+            "rootkit.bin", "backdoor.exe", "wiper.sys",
+            "stealer.dll", "botnet_client.exe"
+        ];
+        
+        function addTerminalLine(text, className = '') {
+            const terminal = document.getElementById('terminal');
+            const line = document.createElement('div');
+            line.className = `terminal-line ${className}`;
+            line.textContent = text;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+        
+        function startHack() {
+            const btn = document.querySelectorAll('.btn')[0];
+            btn.style.display = 'none';
+            
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < hackMessages.length) {
+                    const msg = hackMessages[i];
+                    const isSuccess = msg.includes("SUCCESSFUL");
+                    addTerminalLine(msg, isSuccess ? 'success' : '');
+                    
+                    if (isSuccess) {
+                        document.getElementById('access-granted').style.display = 'block';
+                        playBeep();
+                    }
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 800);
+        }
+        
+        function startVirusInstall() {
+            document.getElementById('button-container').style.display = 'none';
+            document.getElementById('progress-container').style.display = 'block';
+            
+            let progress = 0;
+            const progressFill = document.getElementById('progress-fill');
+            const percentage = document.getElementById('percentage');
+            const currentFile = document.getElementById('current-file');
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 5;
+                if (progress > 100) progress = 100;
+                
+                progressFill.style.width = progress + '%';
+                percentage.textContent = Math.floor(progress) + '%';
+                
+                if (Math.random() > 0.7) {
+                    const file = virusFiles[Math.floor(Math.random() * virusFiles.length)];
+                    currentFile.textContent = `Installing: C:\\Windows\\System32\\${file}`;
+                    addTerminalLine(`> Copying ${file}...`, 'warning');
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    currentFile.textContent = "INSTALLATION COMPLETE";
+                    addTerminalLine(">> VIRUS DEPLOYED SUCCESSFULLY", "danger");
+                    startCountdown();
+                }
+            }, 200);
+        }
+        
+        function startCountdown() {
+            const countdown = document.getElementById('countdown');
+            const timer = document.getElementById('timer');
+            countdown.style.display = 'block';
+            
+            let time = 10;
+            const interval = setInterval(() => {
+                time--;
+                timer.textContent = time;
+                
+                if (time <= 0) {
+                    clearInterval(interval);
+                    document.body.innerHTML = `
+                        <div style="text-align: center; padding-top: 20%; background: #000; height: 100vh; color: #f00;">
+                            <h1 style="font-size: 72px; text-shadow: 0 0 20px #f00;">SYSTEM CRASHED</h1>
+                            <p style="font-size: 24px;">Just kidding! 😄 Your system is safe.</p>
+                            <p style="margin-top: 20px; color: #0f0;">This was a simulation for entertainment purposes only.</p>
+                            <button onclick="location.reload()" style="margin-top: 30px; padding: 15px 30px; font-size: 18px; cursor: pointer; background: #0f0; color: #000; border: none; font-family: monospace;">REBOOT SYSTEM</button>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+        
+        function playBeep() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 800;
+            oscillator.type = 'square';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+        
+        // Random glitch effect
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                document.body.style.filter = 'hue-rotate(90deg) brightness(1.5)';
+                setTimeout(() => {
+                    document.body.style.filter = 'none';
+                }, 100);
+            }
+        }, 2000);
+        
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
-</html>
+  </html>
