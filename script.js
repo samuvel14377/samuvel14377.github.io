@@ -1,23 +1,9 @@
-let loginBtn=document.getElementById("loginBtn")
-let modal=document.getElementById("loginModal")
+function generatePrompt(){
 
-loginBtn.onclick=function(){
-modal.style.display="flex"
-}
+let idea=document.getElementById("promptInput").value
 
-window.onclick=function(e){
-if(e.target==modal){
-modal.style.display="none"
-}
-}
+let prompt="Create a cinematic AI image about "+idea+" ultra realistic 4k lighting dramatic mood"
 
-let generateBtn=document.getElementById("generateBtn")
-
-generateBtn.onclick=function(){
-
-let prompt=document.getElementById("promptInput").value
-
-document.getElementById("result").innerText=
-"AI processing: "+prompt
+document.getElementById("result").innerText=prompt
 
 }
