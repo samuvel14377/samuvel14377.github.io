@@ -3,69 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexAI - Future of AI</title>
+<title>Sam Tech Agent</title>
+
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <nav>
-<div class="logo">Nex<span>AI</span></div>
+<div class="logo">Sam<span>Tech</span></div>
 
-<ul class="nav-links">
-<li><a href="#">Home</a></li>
-<li><a href="#">Features</a></li>
-<li><a href="#">Pricing</a></li>
+<ul>
+<li>Home</li>
+<li>Features</li>
+<li id="pricingBtn">Pricing</li>
 </ul>
 
-<button class="login-btn">Login</button>
+<button id="loginBtn" class="btn3d">Login</button>
 </nav>
 
-<header class="hero">
+<section class="hero">
 
-<div class="hero-content">
-
-<h1>Unleash the Power of <br><span class="gradient-text">Artificial Intelligence</span></h1>
-
-<p>Generate text, images, and code in seconds. Experience the next generation of AI technology today.</p>
+<h1>Sam Tech Agent</h1>
+<p>AI tools • Automation • Future Tech</p>
 
 <div class="prompt-box">
-<input type="text" id="ai-input" placeholder="Type a prompt (e.g., Write a code for...)">
-<button id="generate-btn">Generate</button>
+<input id="promptInput" placeholder="Type prompt...">
+<button id="generateBtn" class="btn3d">Generate</button>
 </div>
 
-<p id="output-message" class="hidden">Generating AI Response...</p>
+<p id="result"></p>
 
-</div>
+</section>
 
-<div class="glow-circle"></div>
-
-</header>
-
-<section class="features">
+<section class="cards">
 
 <div class="card">
-<div class="icon">✍️</div>
-<h3>Smart Copywriting</h3>
-<p>Generate high-quality blogs and articles instantly.</p>
+<h3>AI Prompt Tool</h3>
+<p>Create viral prompts instantly</p>
+<button class="btn3d">Open</button>
 </div>
 
 <div class="card">
-<div class="icon">🎨</div>
-<h3>Image Generation</h3>
-<p>Turn your imagination into stunning AI visuals.</p>
+<h3>AI Image Tool</h3>
+<p>Generate powerful visuals</p>
+<button class="btn3d">Open</button>
 </div>
 
 <div class="card">
-<div class="icon">💻</div>
-<h3>Code Assistant</h3>
-<p>Write, debug, and optimize code faster.</p>
+<h3>Automation</h3>
+<p>Boost productivity with AI</p>
+<button class="btn3d">Open</button>
 </div>
 
 </section>
 
+<!-- LOGIN MODAL -->
+
+<div id="loginModal" class="modal">
+
+<div class="modal-content">
+
+<h2>Sign in</h2>
+
+<input placeholder="Email">
+<input placeholder="Password" type="password">
+
+<button class="btn3d">Login</button>
+
+</div>
+
+</div>
+
 <script src="script.js"></script>
 
 </body>
-</html>
+  </html>
