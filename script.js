@@ -1,9 +1,9 @@
 function generatePrompt(){
 
-let idea=document.getElementById("promptInput").value
+let topic=document.getElementById("promptInput").value
 
-let prompt="Create a cinematic AI image about "+idea+" ultra realistic 4k lighting dramatic mood"
+let prompt="Create a cinematic AI image about "+topic+" ultra realistic lighting 4k"
 
-document.getElementById("result").innerText=prompt
+document.getElementById("output").innerText=prompt
 
 }
