@@ -1,85 +1,38 @@
 body{
-margin:0;
 font-family:Arial;
 background:#0f172a;
 color:white;
+margin:0;
 text-align:center;
 }
 
 nav{
-display:flex;
-justify-content:space-between;
-padding:20px;
 background:#020617;
+padding:15px;
 }
 
-nav a{
-color:white;
-margin-left:20px;
-text-decoration:none;
-}
-
-.hero{
-padding:80px 20px;
-}
-
-.promptBox input{
-padding:12px;
-border-radius:8px;
-border:none;
-width:220px;
-}
-
-.promptBox button{
-padding:12px 25px;
-border:none;
-border-radius:25px;
-background:linear-gradient(45deg,#8b5cf6,#ec4899);
-color:white;
-font-weight:bold;
-cursor:pointer;
-margin-left:10px;
-}
-
-.counter{
-margin-top:20px;
-color:#facc15;
-}
-
-.prompts{
-padding:60px 20px;
-}
-
-.grid{
+.menu{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:20px;
+list-style:none;
 }
 
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-width:200px;
-}
-
-.service{
-padding:60px;
-background:#020617;
-}
-
-.dm{
-display:inline-block;
-padding:15px 30px;
-background:#ec4899;
-border-radius:30px;
+.menu a{
 color:white;
 text-decoration:none;
-margin-top:20px;
 }
 
-footer{
-padding:30px;
-background:#020617;
-  }
+section{
+padding:80px 20px;
+}
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ec4899;
+color:white;
+cursor:pointer;
+}
