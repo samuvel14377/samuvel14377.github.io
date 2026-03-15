@@ -1,104 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sam Tech Agent</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
 <nav>
-
-<h2>Sam Tech Agent</h2>
-
-<div>
-
-<a href="https://youtube.com/@sam_facts_motives" target="_blank">
-Subscribe YouTube
-</a>
-
-<a href="https://www.instagram.com/fearless_facts_ai" target="_blank">
-Instagram
-</a>
-
-</div>
-
+<ul class="menu">
+<li><a href="#home">Home</a></li>
+<li><a href="#trending">Trending Prompts</a></li>
+<li><a href="#generate">Generate Prompt</a></li>
+<li><a href="#tools">AI Tools</a></li>
+<li><a href="#ads">Free AI Ads Service</a></li>
+<li><a href="#instagram">Instagram DM</a></li>
+<li><a href="#youtube">YouTube Channel</a></li>
+<li><a href="#admin">Admin Dashboard</a></li>
+</ul>
 </nav>
 
-
-<section class="hero">
-
-<h1>AI Prompt Generator</h1>
-
-<p>Create powerful prompts instantly</p>
-
-<div class="promptBox">
-
-<input id="promptInput" placeholder="Type your idea">
-
-<button onclick="generatePrompt()">
-Generate Prompt
-</button>
-
-</div>
-
-<p id="result"></p>
-
-<p class="counter">
-🔥 1247 people already using this tool
-</p>
-
+<section id="home">
+<h1>Sam Tech Agent</h1>
+<p>AI prompts, tools and automation hub</p>
 </section>
 
-
-<section class="prompts">
-
-<h2>Trending Prompts</h2>
-
-<div class="grid">
-
-<div class="card">AI YouTube Thumbnail Prompt</div>
-
-<div class="card">AI Instagram Reel Prompt</div>
-
-<div class="card">AI Photo Generator Prompt</div>
-
-<div class="card">AI Business Ads Prompt</div>
-
-</div>
-
+<section id="trending">
+<h2>🔥 Trending Prompts</h2>
+<div id="trendingPrompts"></div>
 </section>
 
+<section id="generate">
+<h2>Generate Prompt</h2>
+<input id="promptInput" placeholder="Enter topic">
+<button onclick="generatePrompt()">Generate</button>
+<p id="output"></p>
+</section>
 
-<section class="service">
+<section id="tools">
+<h2>AI Tools</h2>
+<p>Coming soon AI tools list</p>
+</section>
 
+<section id="ads">
 <h2>Free AI Ads Creation</h2>
-
-<p>Need ads for your business?</p>
-
-<p>We create AI ads for FREE</p>
-
-<a class="dm"
-href="https://www.instagram.com/fearless_facts_ai"
-target="_blank">
-
+<p>Need AI ads for your business?</p>
+<a href="https://www.instagram.com/fearless_facts_ai" target="_blank">
 DM on Instagram
-
 </a>
-
 </section>
 
+<section id="instagram">
+<h2>Instagram Page</h2>
+<a href="https://www.instagram.com/fearless_facts_ai" target="_blank">
+Open Instagram
+</a>
+</section>
 
-<footer>
+<section id="youtube">
+<h2>YouTube Channel</h2>
+<a href="https://youtube.com/@sam_facts_motives" target="_blank">
+Subscribe Channel
+</a>
+</section>
 
-<p>© Sam Tech Agent</p>
-
-</footer>
+<section id="admin">
+<h2>Admin Dashboard</h2>
+<p>Only you manage prompts here</p>
+</section>
 
 <script src="script.js"></script>
 
 </body>
-</html>
+  </html>
