@@ -1,82 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Sam Tech Agent</title>
 
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
 <nav>
-<div class="logo">Sam<span>Tech</span></div>
 
-<ul>
-<li>Home</li>
-<li>Features</li>
-<li id="pricingBtn">Pricing</li>
-</ul>
+<h2>Sam Tech Agent</h2>
 
-<button id="loginBtn" class="btn3d">Login</button>
+<div>
+
+<a href="https://youtube.com/@sam_facts_motives" target="_blank">
+Subscribe YouTube
+</a>
+
+<a href="https://www.instagram.com/fearless_facts_ai" target="_blank">
+Instagram
+</a>
+
+</div>
+
 </nav>
+
 
 <section class="hero">
 
-<h1>Sam Tech Agent</h1>
-<p>AI tools • Automation • Future Tech</p>
+<h1>AI Prompt Generator</h1>
 
-<div class="prompt-box">
-<input id="promptInput" placeholder="Type prompt...">
-<button id="generateBtn" class="btn3d">Generate</button>
+<p>Create powerful prompts instantly</p>
+
+<div class="promptBox">
+
+<input id="promptInput" placeholder="Type your idea">
+
+<button onclick="generatePrompt()">
+Generate Prompt
+</button>
+
 </div>
 
 <p id="result"></p>
 
-</section>
-
-<section class="cards">
-
-<div class="card">
-<h3>AI Prompt Tool</h3>
-<p>Create viral prompts instantly</p>
-<button class="btn3d">Open</button>
-</div>
-
-<div class="card">
-<h3>AI Image Tool</h3>
-<p>Generate powerful visuals</p>
-<button class="btn3d">Open</button>
-</div>
-
-<div class="card">
-<h3>Automation</h3>
-<p>Boost productivity with AI</p>
-<button class="btn3d">Open</button>
-</div>
+<p class="counter">
+🔥 1247 people already using this tool
+</p>
 
 </section>
 
-<!-- LOGIN MODAL -->
 
-<div id="loginModal" class="modal">
+<section class="prompts">
 
-<div class="modal-content">
+<h2>Trending Prompts</h2>
 
-<h2>Sign in</h2>
+<div class="grid">
 
-<input placeholder="Email">
-<input placeholder="Password" type="password">
+<div class="card">AI YouTube Thumbnail Prompt</div>
 
-<button class="btn3d">Login</button>
+<div class="card">AI Instagram Reel Prompt</div>
+
+<div class="card">AI Photo Generator Prompt</div>
+
+<div class="card">AI Business Ads Prompt</div>
 
 </div>
 
-</div>
+</section>
+
+
+<section class="service">
+
+<h2>Free AI Ads Creation</h2>
+
+<p>Need ads for your business?</p>
+
+<p>We create AI ads for FREE</p>
+
+<a class="dm"
+href="https://www.instagram.com/fearless_facts_ai"
+target="_blank">
+
+DM on Instagram
+
+</a>
+
+</section>
+
+
+<footer>
+
+<p>© Sam Tech Agent</p>
+
+</footer>
 
 <script src="script.js"></script>
 
 </body>
-  </html>
+</html>
