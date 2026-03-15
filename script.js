@@ -1,24 +1,23 @@
-document.getElementById("generate-btn").addEventListener("click",function(){
+let loginBtn=document.getElementById("loginBtn")
+let modal=document.getElementById("loginModal")
 
-let input=document.getElementById("ai-input").value
-let message=document.getElementById("output-message")
-
-if(input.trim()===""){
-alert("Please type a prompt first")
+loginBtn.onclick=function(){
+modal.style.display="flex"
 }
 
-else{
-
-message.classList.remove("hidden")
-message.innerText="Analyzing prompt..."
-
-setTimeout(()=>{
-
-message.innerText="AI Response Generated"
-console.log("AI Output for: "+input)
-
-},2000)
-
+window.onclick=function(e){
+if(e.target==modal){
+modal.style.display="none"
+}
 }
 
-})
+let generateBtn=document.getElementById("generateBtn")
+
+generateBtn.onclick=function(){
+
+let prompt=document.getElementById("promptInput").value
+
+document.getElementById("result").innerText=
+"AI processing: "+prompt
+
+}
