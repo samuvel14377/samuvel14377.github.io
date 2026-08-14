@@ -1212,17 +1212,43 @@
             tbody.innerHTML += `<tr><td><strong style="color:var(--accent); font-family:monospace; font-size:14px; background: rgba(188, 19, 254, 0.1); padding: 4px 8px; border-radius: 4px;">${c.code}</strong></td><td style="font-weight: bold; color: var(--success);">${c.discount}%</td><td style="color: var(--text-muted);">${limitText}</td><td><span class="badge ${c.status ? 'badge-success' : 'badge-danger'}">${c.status ? 'Active' : 'Disabled'}</span></td><td style="display:flex; gap:5px;"><button class="btn btn-outline btn-sm" onclick="window.toggleCoupon('${c.code}')" title="${c.status ? 'Disable' : 'Enable'}">${c.status ? '<i class="fas fa-ban"></i>' : '<i class="fas fa-check"></i>'}</button><button class="btn btn-danger btn-sm" onclick="window.deleteCoupon('${c.code}')" title="Delete"><i class="fas fa-trash"></i></button></td></tr>`;
         });
     }
-    
-    document.getElementById('btn-add-coupon').onclick = () => {
-        const code = document.getElementById('coupon-code').value.trim().toUpperCase(); const discount = parseInt(document.getElementById('coupon-discount').value); const maxUse = document.getElementById('coupon-max').value ? parseInt(document.getElementById('coupon-max').value) : null;
-        if(!code || isNaN(discount)) return showToast('Valid Code and Discount are required', 'error'); if(coupons.find(c => c.code === code)) return showToast('This coupon code already exists', 'error'); if(discount <= 0 || discount > 100) return showToast('Discount must be between 1% and 100%', 'error');
-        coupons.push({ code, discount, maxUse, used: 0, status: true }); saveCoupons(); renderCoupons(); showToast('Coupon code created successfully!');
-        document.getElementById('coupon-code').value = ''; document.getElementById('coupon-discount').value = ''; document.getElementById('coupon-max').value = '';
-    };
-    window.toggleCoupon = (code) => { const c = coupons.find(x => x.code === code); if(c) { c.status = !c.status; saveCoupons(); renderCoupons(); showToast(`Coupon ${c.status ? 'activated' : 'disabled'}`); } };
-    window.deleteCoupon = (code) => { if(confirm(`Are you sure you want to delete coupon ${code}?`)) { coupons = coupons.filter(x => x.code !== code); saveCoupons(); renderCoupons(); showToast('Coupon deleted successfully'); } };
+    document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+    }, 2000);
 
-    renderCoupons();
+    document.getElementById('btn-login').addEventListener('click', () => {
+        const email = document.getElementById('admin-email').value.trim();
+        const pass = document.getElementById('admin-pass').value.trim();
+
+        if((email === "admin@example.com" || email === "samuvel14377@gmail.com") && pass === "admin123"){
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('auth-screen').style.display = 'none';
+            document.getElementById('main-layout').style.display = 'block';
+            showToast('Login Successful!', 'success');
+        } else {
+            showToast('Invalid Email or Password', 'error');
+        }
+    });
+
+    function showToast(msg, type){
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'times-circle'}'></i> ${msg}`;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    document.getElementById('btn-logout').addEventListener('click', () => {
+        document.getElementById('main-layout').style.display = 'none';
+        document.getElementById('auth-screen').style.display = 'flex';
+        document.getElementById('admin-email').value = '';
+        document.getElementById('admin-pass').value = '';
+        showToast('Logged out successfully', 'success');
+    });
+});
+    
 </script>
 </body>
 </html>
