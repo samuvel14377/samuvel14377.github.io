@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#100d1d" />
+  <title>GlowChat — Anonymous Text Chat</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <div class="bg-glow glow-one"></div><div class="bg-glow glow-two"></div>
+  <header class="topbar"><a class="brand" href="#"><span class="brand-mark">✦</span> GlowChat</a><span class="tagline">anonymous · text only</span><button id="adminOpen" class="ghost small">Admin</button></header>
+  <main class="wrap">
+    <section id="joinPanel" class="panel join-panel">
+      <div class="eyebrow">✦ YOUR SPACE, YOUR NICKNAME</div><h1>Meet people.<br><span>Stay anonymous.</span></h1>
+      <p class="muted">No phone number. No photos, videos, or audio. Just text chat.</p>
+      <form id="joinForm" class="stack"><label>Username<input id="username" maxlength="20" required placeholder="e.g. moonlight" autocomplete="nickname" /></label><label>Nickname<input id="nickname" maxlength="24" required placeholder="What should people call you?" /></label><button class="primary" type="submit">Enter the chat <span>→</span></button></form>
+      <p class="tiny">18+ community. Be respectful. Messages expire automatically. Never share private information.</p>
+      <div id="setupNotice" class="notice hidden">Site setup needed: add your Supabase URL and public anon key in <code>app.js</code>.</div>
+    </section>
+    <section id="chatPanel" class="panel chat-panel hidden">
+      <div class="chat-head"><div><div class="eyebrow">LIVE LOBBY</div><h2>Public chat <span class="live-dot"></span></h2><p id="whoAmI" class="muted"></p></div><button id="leaveBtn" class="ghost">Leave</button></div>
+      <div id="notice" class="notice hidden"></div><div id="messages" class="messages" aria-live="polite"><div class="empty">Loading messages…</div></div>
+      <form id="sendForm" class="composer"><input id="messageInput" maxlength="500" placeholder="Write a message…" autocomplete="off" required /><button class="primary send" type="submit" aria-label="Send message">➤</button></form>
+      <p class="tiny composer-note">Text only · Bad words and personal contact details are blocked · Messages auto-delete after 24 hours</p>
+    </section>
+    <section id="adminPanel" class="panel admin-panel hidden">
+      <div class="chat-head"><div><div class="eyebrow">GLOW CONTROL</div><h2>Admin dashboard <span class="admin-badge">✦ GLOW ADMIN</span></h2><p class="muted">Moderate messages and manage bans.</p></div><button id="adminClose" class="ghost">Close</button></div>
+      <form id="adminLoginForm" class="stack admin-login"><label>Admin email<input id="adminEmail" type="email" placeholder="your-admin@email.com" required autocomplete="username" /></label><label>Password<input id="adminPassword" type="password" placeholder="Admin password" required autocomplete="current-password" /></label><button class="primary" type="submit">Secure admin login</button><p class="tiny">Admin access is verified by Supabase database rules, not by a password stored in this website.</p></form>
+      <div id="adminTools" class="hidden"><div class="admin-stats"><div><strong id="messageCount">0</strong><span>Messages</span></div><div><strong id="userCount">0</strong><span>Users</span></div></div><h3>Recent messages</h3><div id="adminMessages" class="admin-list"></div><h3>Users</h3><div id="adminUsers" class="admin-list"></div><button id="adminLogout" class="ghost">Log out admin</button></div>
+      <div id="adminNotice" class="notice hidden"></div>
+    </section>
+    <footer>GlowChat <span>•</span> Built for respectful conversations</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
